@@ -1,14 +1,14 @@
 
 require("todo-comments").setup{
-  signs = true, -- show icons in the signs column
-  sign_priority = 8, -- sign priority
-  -- keywords recognized as todo comments
+  signs = true, -- показувати іконки в колонці знаків
+  sign_priority = 8, -- пріоритет знаку
+
+  -- ключові слова, що розпізнаються як TODO-коментарі
   keywords = {
     FIX = {
-      icon = " ", -- icon used for the sign, and in search results
-      color = "error", -- can be a hex color, or a named color (see below)
-      alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
-      -- signs = false, -- configure signs for some keywords individually
+      icon = " ", -- іконка для помилок
+      color = "error", 
+      alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, 
     },
     TODO = { icon = " ", color = "info" },
     HACK = { icon = " ", color = "warning" },
@@ -16,22 +16,20 @@ require("todo-comments").setup{
     PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
     NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
   },
-  merge_keywords = true, -- when true, custom keywords will be merged with the defaults
-  -- highlighting of the line containing the todo comment
-  -- * before: highlights before the keyword (typically comment characters)
-  -- * keyword: highlights of the keyword
-  -- * after: highlights after the keyword (todo text)
+  merge_keywords = true, -- підсвічування рядків з TODO-коментарями
+
+  -- підсвічування рядків з TODO-коментарями
   highlight = {
-    before = "", -- "fg" or "bg" or empty
-    keyword = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
-    after = "fg", -- "fg" or "bg" or empty
-    pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
-    comments_only = true, -- uses treesitter to match keywords in comments only
-    max_line_len = 400, -- ignore lines longer than this
-    exclude = {}, -- list of file types to exclude highlighting
+    before = "", -- перед ключовим словом
+    keyword = "wide", -- саме ключове слово (широке — включає пробіли)
+    after = "fg", -- після ключового слова
+    pattern = [[.*<(KEYWORDS)\s*:]], -- шаблон для пошуку ключових слів
+    comments_only = true, -- шукати тільки в коментарях (через treesitter)
+    max_line_len = 400, -- ігнорувати довші рядки
+    exclude = {}, -- виключені типи файлів
   },
-  -- list of named colors where we try to extract the guifg from the
-  -- list of hilight groups or use the hex color if hl not found as a fallback
+
+  -- кольори для різних типів коментарів
   colors = {
     error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
     warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
@@ -39,6 +37,8 @@ require("todo-comments").setup{
     hint = { "LspDiagnosticsDefaultHint", "#10B981" },
     default = { "Identifier", "#7C3AED" },
   },
+
+  -- пошук коментарів (ripgrep)
   search = {
     command = "rg",
     args = {
@@ -48,9 +48,6 @@ require("todo-comments").setup{
       "--line-number",
       "--column",
     },
-    -- regex that will be used to match keywords.
-    -- don't replace the (KEYWORDS) placeholder
-    pattern = [[\b(KEYWORDS):]], -- ripgrep regex
-    -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
+    pattern = [[\b(KEYWORDS):]], -- регулярка для пошуку ключових слів
   },
 }
