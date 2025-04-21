@@ -1,4 +1,4 @@
-local function default_header() -- ANSI Shadow
+local function default_header() -- ASCII логотип (стиль Shadow)
     return {
         '', '', '',
         '██╗  ██╗ █████╗ ███╗   ██╗ █████╗ ███████╗██╗  ██╗██╗██╗  ██╗ ██████╗ ',
@@ -19,7 +19,7 @@ require('dashboard').setup {
             {
                 icon = '󰈞 ',
                 icon_hl = 'Title',
-                desc = 'Find files',
+                desc = 'Знайти файли',
                 desc_hl = 'String',
                 key = 'f',
                 keymap = 'SPC f f',
@@ -28,7 +28,7 @@ require('dashboard').setup {
             }, {
 				icon = '󰱾 ',
                 icon_hl = 'Title',
-                desc = 'Open recently',
+                desc = 'Нещодавні файли',
                 desc_hl = 'String',
                 key = 'r',
                 keymap = 'SPC f r',
@@ -37,7 +37,7 @@ require('dashboard').setup {
             }, {
                 icon = ' ',
                 icon_hl = 'Title',
-                desc = 'Find text',
+                desc = 'Пошук тексту',
                 desc_hl = 'String',
                 key = 'w',
                 keymap = 'SPC f w',
@@ -46,7 +46,7 @@ require('dashboard').setup {
             }, {
                 icon = ' ',
                 icon_hl = 'Title',
-                desc = 'Git Braches',
+                desc = 'Гілки Git',
                 desc_hl = 'String',
                 key = 'b',
                 keymap = 'SPC g b',
