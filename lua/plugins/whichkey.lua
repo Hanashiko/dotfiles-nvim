@@ -3,47 +3,46 @@ local wk = require("which-key")
 
 wk.register({
 	f = {
-		name = "Find",
-		f = {"Find File", ":Telescope find_files<CR>"},
-		t = {"Find Text", ":Telescope live_grep<CR>"},
-		b = {"Find Buffer", ":Telescope buffers<CR>"},
-		h = {"Find Help", ":Telescope help_tags<CR>"},
+		name = "Gjier",
+		f = {":Telescope find_files<CR>", "Файли"},
+		t = {":Telescope live_grep<CR>", "Текст"},
+		b = {":Telescope buffers<CR>", "Буфери"},
+		h = {":Telescope help_tags<CR>", "Довідка"},
 	},
 
 	g = {
 		name = "Git",
-		b = {"Open Branches", ":Telescope git_branches<CR>"},
-		c = {"Open Commits", ":Telescope git_commits<CR>"},
-		s = {"Open Status", ":Telescope git_status<CR>"},
+		b = {":Telescope git_branches<CR>", "Гілки"},
+		c = {":Telescope git_commits<CR>", "Коміти"},
+		s = {":Telescope git_status<CR>", "Статус"},
 	},
 
-    e = {"Open Diagnostic Window", ":lua vim.diagnostic.open_float()<CR>"},
+    e = {":lua vim.diagnostic.open_float()<CR>", "Вікно діагностики"},
 
     l = {
         name = "LSP",
-        D = {"Declaration", ":lua vim.lsp.bud.declaration()<CR>"},
-        d = {"Definition", ":lua vim.lsp.buf.definition()<CR>"},
-        k = {"Hover", ":lua vim.lsp.buf.hover()<CR>"},
+        D = {":lua vim.lsp.bud.declaration()<CR>"}, "Оголошення",
+        d = {":lua vim.lsp.buf.definition()<CR>", "Визначення"},
+        k = {":lua vim.lsp.buf.hover()<CR>", "Підказка"},
     },
 
     t = {
-        name = "NvimTree",
-        tt = {"Tree Toggle", ":NvimTreeToggle<CR>"},
-        f = {"Tree Focus", ":NvimTreeFocus<CR>"},
+        name = "Файлове дерево",
+        tt = {":NvimTreeToggle<CR>", "Перемкнути"},
+        f = {":NvimTreeFocus<CR>", "Фокус"},
     },
 
     n = {
-        name = "TodoList",
-        l = {"Open List", ":TodoTelescope<CR>"},
+        name = "Список TODO",
+        l = {":TodoTelescope<CR>", "Відкрити список"},
     },
 
-    s = {"Open Terminal", ":Ruff<CR>"},
-
+    s = {":Ruff<CR>", "Термінал"},
     r = {"Ruff"},
 
     c = {
-        name = "Color Schemes",
-        s = {"Open Colorscheme Picker", ":Telescope colorscheme<CR>"},
+        name = "Кольорові схеми",
+        s = {":Telescope colorscheme<CR>", "Вибір теми"},
     }
 
 }, {prefix = "<leader>"})
