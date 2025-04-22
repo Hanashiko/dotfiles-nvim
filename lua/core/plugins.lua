@@ -6,20 +6,23 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	
-	{ 'nvim-treesitter/nvim-treesitter' },
+
+	-- Підсвітка синтаксису через дерева розбору
+    { 'nvim-treesitter/nvim-treesitter' },
+
+    -- Налаштування LSP-сереверів
 	{ 'neovim/nvim-lspconfig' },
 
-	-- Autocomplete support
+	-- Автодоповнення
 	{
-        'hrsh7th/cmp-nvim-lsp', 
+        'hrsh7th/cmp-nvim-lsp',
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             require('lspconfig')['ts_ls'].setup { capabilities = capabilities }
@@ -29,46 +32,50 @@ require("lazy").setup({
 	{ 'hrsh7th/cmp-path' },
 	{ 'hrsh7th/cmp-cmdline' },
 	{ 'hrsh7th/nvim-cmp' },
-    { 'L3MON4D3/LuaSnip' },
-	{ 'williamboman/mason.nvim' },
+    { 'L3MON4D3/LuaSnip' }, -- Сніпети
+	{ 'williamboman/mason.nvim' }, -- Установка LSP/форматерів/лінтерів
 
+    -- Fuzzy finder (пошук файлів, grep тощо)
     {
-		'nvim-telescope/telescope.nvim', tag = '0.1.6',
+		'nvim-telescope/telescope.nvim',
+        tag = '0.1.6',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
 
+    -- Стартова сторінка
 	{
 	  'nvimdev/dashboard-nvim',
 	  event = 'VimEnter',
 	  config = function()
-	    require('dashboard').setup {
-	      -- config
-	    }
+            require('dashboard').setup {}
 	  end,
-	  dependencies = { {'nvim-tree/nvim-web-devicons'}}
+	  dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
 
+    -- Анімація на основі клітинкового автомата
 	{ 'Eandrju/cellular-automaton.nvim' },
+
+    -- Підсвічування кольрів у коді (наприклад, hex-кольори)
 	{ 'norcalli/nvim-colorizer.lua' },
 
+    -- Нижній статусбар
 	{
 	    'nvim-lualine/lualine.nvim',
 	    dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
 
+    -- TODO коментарі з пошуком через Telescope
 	{
 	  "folke/todo-comments.nvim",
 	  dependencies = { "nvim-lua/plenary.nvim" },
-	  opts = {
-	    -- your configuration comes here
-	    -- or leave it empty to use the default settings
-	    -- refer to the configuration section below
-	  }
+      opts = {}
 	},
 
+    -- Теми
 	{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
+    -- Покращений escape
 	{
 	  "max397574/better-escape.nvim",
 	  config = function()
@@ -87,63 +94,61 @@ require("lazy").setup({
   	  end
 	},
 
+    -- Коментування коду
 	{
 	    'numToStr/Comment.nvim',
-	    opts = {
-	        -- add any options here
-	    },
+	    opts = {},
 	    lazy = false,
 	},
 
+    -- Вкладки буферів
 	{'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons'},
 
+    -- Файловий менеджер
 	{
 	  "nvim-tree/nvim-tree.lua",
 	  version = "*",
 	  lazy = false,
-	  dependencies = {
-	    "nvim-tree/nvim-web-devicons",
-	  },
+	  dependencies = { "nvim-tree/nvim-web-devicons" },
 	  config = function()
 	    require("nvim-tree").setup {}
 	  end,
 	},
 
+    -- Статичний аналізатор коду (ALE)
 	{
 	    'dense-analysis/ale',
 	    config = function()
-	        -- Configuration goes here.
-	        local g = vim.g
-	
-	        g.ale_linters = {
+	        vim.g.ale_linters = {
 	        	python = {'mypy'},
 	            lua = {'lua_language_server'}
 	        }
 	    end
 	},
 
+    -- Підсвітка слова під курсором в усіх буферах
 	{ 'RRethy/vim-illuminate' },
 
+    -- Плагін для luarocks 
 	{
 	    "vhyrro/luarocks.nvim",
-	    priority = 1001, -- this plugin needs to run before anything else
+	    priority = 1001,
 	    opts = {
 	        rocks = { "magick" },
 	    },
 	},
 
+    -- Зручне відображення помилок
 	{
 	 "folke/trouble.nvim",
 	 dependencies = { "nvim-tree/nvim-web-devicons" },
-	 opts = {
-	  -- your configuration comes here
-	  -- or leave it empty to use the default settings
-	  -- refer to the configuration section below
-	 },
+	 opts = {},
 	},
 
+    -- Вбудований термінал
 	{'akinsho/toggleterm.nvim', version = "*", config = true},
 
+    -- Підказки по комбінаціях клавіш
 	{
 	  "folke/which-key.nvim",
 	  event = "VeryLazy",
@@ -151,15 +156,10 @@ require("lazy").setup({
 	    vim.o.timeout = true
 	    vim.o.timeoutlen = 300
 	  end,
-	  opts = {
-	    -- your configuration comes here
-	    -- or leave it empty to use the default settings
-	    -- refer to the configuration section below
-	  }
+	  opts = {}
 	},
 
-	-- Выравнивание и перемещение текста
-	-- Автоматическое открытие фигурных скобок, кавычек и т.д
+    -- Модулі min.nvim
 	{ 'echasnovski/mini.nvim', version = false },
 	{ 'echasnovski/mini.move', version = false },
 	{ 'echasnovski/mini.pairs', version = false },
