@@ -4,7 +4,7 @@ local config = {
     name = 'slide',
 }
 
--- update function
+-- Функція оновлення
 config.update = function (grid)
     for i = 1, #grid do
         local prev = grid[i][#(grid[i])]
