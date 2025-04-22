@@ -1,26 +1,28 @@
+
+-- Лідер-клавіша
 vim.g.mapleader = " "
 
--- Quit
+-- Вийти
 vim.keymap.set('n', '<C-q>', '<cmd>:q<CR>')
 
--- Copy all text
+-- Скопіювати вест текст у буфер
 vim.keymap.set('n', '<C-a>', '<cmd>%y+<CR>')
 
--- Saving a file via Ctrl+S
+-- Зберегти файл
 vim.keymap.set('i', '<C-s>', '<cmd>:w<CR>')
 vim.keymap.set('n', '<C-s>', '<cmd>:w<CR>')
 
--- NvimTree
+-- Файловий менеджер NvimTree
 vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<leader>tf', ':NvimTreeFocus<CR>')
 
--- BufferLine
+-- Перемикання буферів
 vim.keymap.set('n','<Tab>', ':BufferLineCycleNext<CR>')
 vim.keymap.set('n','<S-Tab>', ':BufferLineCyclePrev<CR>')
 vim.keymap.set('n', '<C-l>', ':BufferLineCloseOthers<CR>')
 
--- TodoList
+-- Список TODO
 vim.keymap.set('n', '<leader>nl', ':TodoTelescope<CR>')
 
--- ToggleTerm
+-- Термінал
 vim.keymap.set('n', '<leader>s', ':ToggleTerm direction=float<CR>')
