@@ -3,17 +3,17 @@ local lualine = require('lualine')
 
 -- Кольори для підсвітки
 local colors = {
-  bg       = '#202328',
-  fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
+  bg       = '#1a1b26',
+  fg       = '#a9b1d6',
+  yellow   = '#e0af68',
+  cyan     = '#449dab',
   darkblue = '#081633',
-  green    = '#98be65',
+  green    = '#9ece6a',
   orange   = '#FF8800',
   violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  magenta  = '#ad8ee6',
+  blue     = '#7aa2f7',
+  red      = '#f7768e',
 }
 
 -- Умови для відображення компонентів

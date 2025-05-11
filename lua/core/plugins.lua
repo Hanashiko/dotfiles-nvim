@@ -76,23 +76,23 @@ require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
     -- Покращений escape
-	{
-	  "max397574/better-escape.nvim",
-	  config = function()
-  	    require("better_escape").setup({
-            keys = function()
-                vim.api.nvim_input("<Esc>")
-                local current_line = vim.api.nvim_get_current_line()
-                if current_line:match("^%s+j$") then
-                    vim.schedule(function()
-                        vim.api.nvim_set_current_line("")
-                    end)
-                end
-            end,
-            timeout = vim.o.timeoutlen,
-  	    })
-  	  end
-	},
+--	{
+--	  "max397574/better-escape.nvim",
+--	  config = function()
+--  	    require("better_escape").setup({
+--            keys = function()
+--                vim.api.nvim_input("<Esc>")
+--                local current_line = vim.api.nvim_get_current_line()
+--                if current_line:match("^%s+j$") then
+--                    vim.schedule(function()
+--                        vim.api.nvim_set_current_line("")
+--                    end)
+--                end
+--            end,
+--            timeout = vim.o.timeoutlen,
+--  	    })
+--  	  end
+--	},
 
     -- Коментування коду
 	{
@@ -163,5 +163,12 @@ require("lazy").setup({
 	{ 'echasnovski/mini.nvim', version = false },
 	{ 'echasnovski/mini.move', version = false },
 	{ 'echasnovski/mini.pairs', version = false },
+
+    {
+        "folke/tokyonight.nvim",
+        lazy=false,
+        priority=1000,
+        opts = {},
+    },
 
 })
